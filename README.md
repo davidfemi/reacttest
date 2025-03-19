@@ -118,28 +118,27 @@ The Intercom integration is spread across several files:
    - Integrates authentication with Intercom
    - Manages user session state
 
-### Best Practices Implemented
+## Environment Variables
 
-1. **Single Page App Optimization:**
-   - Uses 'update' instead of 'boot' for subsequent changes
-   - Properly handles page transitions
-   - Maintains session across route changes
+This project uses environment variables to store configuration values securely. Create a `.env` file in the project root with the following variables:
 
-2. **Security:**
-   - No sensitive data sent to Intercom
-   - Proper session cleanup on logout
-   - User identification only after authentication
+```
+REACT_APP_INTERCOM_APP_ID="your_intercom_app_id_here"
+```
 
-3. **Performance:**
-   - Lazy loading of the Intercom widget
-   - Efficient update batching
-   - Minimal re-renders
+You can also copy the `.env.example` file and replace the placeholder values with your actual configuration.
 
-## Contributing
+```bash
+cp .env.example .env
+```
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+### Intercom Integration
+
+The application integrates with Intercom for customer support and engagement. The integration:
+
+- Uses the Intercom JavaScript API
+- Tracks user sessions and page views
+- Associates conversations with user data when they're logged in
+- Requires the `REACT_APP_INTERCOM_APP_ID` environment variable to be set
+
 

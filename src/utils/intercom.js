@@ -1,6 +1,9 @@
 // Track if Intercom has been booted
 let isBooted = false;
 
+// Get Intercom app ID from environment variables
+const INTERCOM_APP_ID = process.env.REACT_APP_INTERCOM_APP_ID;
+
 // Update Intercom with user data
 export const updateIntercomUser = (user) => {
   if (!user) {
@@ -8,14 +11,14 @@ export const updateIntercomUser = (user) => {
     window.Intercom && window.Intercom('shutdown');
     // Boot Intercom for logged-out state
     window.Intercom && window.Intercom('boot', {
-      app_id: "mthemgos"
+      app_id: INTERCOM_APP_ID
     });
     isBooted = false;
     return;
   }
 
   const userData = {
-    app_id: "mthemgos",
+    app_id: INTERCOM_APP_ID,
     name: user.name,
     email: user.email,
     user_id: user.email, // Using email as user_id since we don't have unique IDs
