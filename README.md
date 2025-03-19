@@ -1,14 +1,4 @@
-# Stay Book - Hotel Booking Platform
 
-A modern hotel booking platform built with React, featuring user authentication and Intercom integration for customer support.
-
-## Features
-
-- User authentication (login/register)
-- Protected hotel listing and booking routes
-- Interactive property search and filtering
-- Responsive design
-- Real-time customer support via Intercom
 
 ## Getting Started
 
@@ -20,18 +10,15 @@ A modern hotel booking platform built with React, featuring user authentication 
 ### Installation
 
 1. Clone the repository
-```bash
-git clone <repository-url>
-cd client-master
 ```
 
 2. Install dependencies
-```bash
+```
 npm install
 ```
 
 3. Start the development server
-```bash
+```
 npm start
 ```
 
