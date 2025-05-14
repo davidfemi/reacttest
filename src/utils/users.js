@@ -4,13 +4,15 @@ const sampleUsers = [
     email: 'john@example.com',
     password: 'password123', // In a real app, this would be hashed
     name: 'John Doe',
-    role: 'user'
+    role: 'user',
+    website: 'https://reacttest-kappa-two.vercel.app'
   },
   {
     email: 'jane@example.com',
     password: 'password456',
     name: 'Jane Smith',
-    role: 'user'
+    role: 'user',
+    website: 'reacttest-kappa-two.vercel.app'
   },
   {
     email: 'admin@staybook.com',
