@@ -23,7 +23,8 @@ export const updateIntercomUser = (user) => {
     email: user.email,
     user_id: user.email, // Using email as user_id since we don't have unique IDs
     created_at: Math.floor(Date.now() / 1000), // Current timestamp in seconds
-    role: user.role
+    role: user.role,
+    website: user.website
   };
 
   if (!isBooted) {
