@@ -1,0 +1,82 @@
+{
+  "editor": {
+    "formatOnSave": true,
+    "tabSize": 2,
+    "insertSpaces": true,
+    "detectIndentation": true,
+    "rulers": [100],
+    "wordWrap": "on",
+    "fontFamily": "Menlo, Monaco, 'Courier New', monospace",
+    "fontSize": 14
+  },
+  "terminal": {
+    "fontSize": 14,
+    "lineHeight": 1.2,
+    "fontFamily": "Menlo, Monaco, 'Courier New', monospace"
+  },
+  "extensions": {
+    "recommendations": [
+      "dbaeumer.vscode-eslint",
+      "esbenp.prettier-vscode",
+      "formulahendry.auto-rename-tag"
+    ]
+  },
+  "language": {
+    "javascript": {
+      "format": {
+        "semicolons": true,
+        "trailingComma": "es5",
+        "singleQuote": true,
+        "printWidth": 100,
+        "tabWidth": 2
+      },
+      "lint": {
+        "eqeqeq": "warn",
+        "noUnusedLocals": "warn",
+        "noUnusedParameters": "warn",
+        "noImplicitReturns": "warn"
+      }
+    },
+    "typescript": {
+      "format": {
+        "semicolons": true,
+        "trailingComma": "es5",
+        "singleQuote": true,
+        "printWidth": 100,
+        "tabWidth": 2
+      }
+    },
+    "json": {
+      "format": {
+        "tabWidth": 2
+      }
+    },
+    "html": {
+      "format": {
+        "wrapLineLength": 100,
+        "wrapAttributes": "auto"
+      }
+    },
+    "css": {
+      "format": {
+        "newlineBetweenRules": true
+      }
+    }
+  },
+  "search": {
+    "exclude": {
+      "**/node_modules": true,
+      "**/bower_components": true,
+      "**/*.code-search": true,
+      "**/build": true,
+      "**/.git": true
+    }
+  },
+  "intercom": {
+    "appId": "${env:REACT_APP_INTERCOM_APP_ID}"
+  },
+  "liveShare": {
+    "allowGuestDebugControl": false,
+    "allowGuestTaskControl": true
+  }
+} 

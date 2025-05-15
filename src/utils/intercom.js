@@ -24,7 +24,7 @@ export const updateIntercomUser = (user) => {
     user_id: user.email, // Using email as user_id since we don't have unique IDs
     created_at: Math.floor(Date.now() / 1000), // Current timestamp in seconds
     role: user.role,
-    website: user.website
+    website: user.website || 'reacttest-kappa-two.vercel.app'
   };
 
   if (!isBooted) {

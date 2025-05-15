@@ -1,5 +1,3 @@
-
-
 ## Getting Started
 
 ### Prerequisites
@@ -140,5 +138,23 @@ The application integrates with Intercom for customer support and engagement. Th
 - Tracks user sessions and page views
 - Associates conversations with user data when they're logged in
 - Requires the `REACT_APP_INTERCOM_APP_ID` environment variable to be set
+
+## Development Environment
+
+This project includes configuration for the Cursor IDE, which provides enhanced development features for React applications.
+
+### Cursor Configuration
+
+The `.cursor` directory contains settings and configurations for the Cursor IDE:
+
+- Code formatting rules
+- Custom tasks and shortcuts
+- Debugging configurations
+- Recommended extensions
+- Custom code snippets for React and Intercom integration
+
+To make the most of these configurations, make sure to install the recommended extensions listed in `.cursor/extensions.json`.
+
+For more information, see the [Cursor Configuration README](.cursor/README.md).
 
 
