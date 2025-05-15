@@ -19,6 +19,16 @@ const sampleUsers = [
     password: 'admin123',
     name: 'Admin User',
     role: 'admin'
+  },
+  {
+    email: 'testing@user1.com',
+    password: 'password789',
+    name: 'Napoleon Orwell',
+    role: 'user',
+    user_id: '09090',
+    number_of_dogs: 2,
+    website: 'https://reacttest-kappa-two.vercel.app',
+    dash: 'https://reacttest-kappa-two.vercel.app'
   }
 ];
 
@@ -52,7 +62,7 @@ export const authenticateUser = (email, password) => {
 export const addUser = (userData) => {
   const users = getUsers();
   const userExists = users.some(u => u.email === userData.email);
-  
+
   if (userExists) {
     throw new Error('User already exists');
   }
@@ -64,7 +74,7 @@ export const addUser = (userData) => {
 
   users.push(newUser);
   localStorage.setItem('seededUsers', JSON.stringify(users));
-  
+
   const { password, ...userWithoutPassword } = newUser;
   return userWithoutPassword;
-}; 
+};

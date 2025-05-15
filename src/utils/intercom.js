@@ -21,10 +21,13 @@ export const updateIntercomUser = (user) => {
     app_id: INTERCOM_APP_ID,
     name: user.name,
     email: user.email,
-    user_id: user.email, // Using email as user_id since we don't have unique IDs
+    user_id: user.user_id || user.email, // Use provided user_id if available, otherwise fall back to email
     created_at: Math.floor(Date.now() / 1000), // Current timestamp in seconds
     role: user.role,
-    website: user.website || 'reacttest-kappa-two.vercel.app'
+    website: user.website || 'reacttest-kappa-two.vercel.app',
+    // Include additional user properties if they exist
+    ...(user.number_of_dogs && { number_of_dogs: user.number_of_dogs }),
+    ...(user.dash && { dash: user.dash })
   };
 
   if (!isBooted) {
@@ -44,4 +47,4 @@ export const updateIntercomPage = () => {
       last_request_at: Math.floor(Date.now() / 1000)
     });
   }
-}; 
+};
