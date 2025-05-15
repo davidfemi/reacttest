@@ -123,8 +123,14 @@
   transform: translateY(-1px);
 }
 
-.resetButton {
+.buttonGroup {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
   margin-top: 15px;
+}
+
+.resetButton, .directLoginButton {
   padding: 8px 12px;
   background-color: #f0f0f0;
   color: #666;
@@ -133,12 +139,20 @@
   font-size: 14px;
   cursor: pointer;
   transition: all 0.3s ease;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
 }
 
-.resetButton:hover {
+.resetButton:hover, .directLoginButton:hover {
   background-color: #e0e0e0;
   color: #333;
+}
+
+.directLoginButton {
+  background-color: #e6f7ff;
+  color: #0066cc;
+  border-color: #b3d9ff;
+}
+
+.directLoginButton:hover {
+  background-color: #cceeff;
+  color: #004d99;
 }

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, Navigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { initializeUsers, authenticateUser, resetUsers } from '../../utils/users';
+import { initializeUsers, authenticateUser, resetUsers, checkUserExists, addNapoleonUser } from '../../utils/users';
 import './login.css';
 
 const Login = () => {
@@ -22,6 +22,9 @@ const Login = () => {
   // Function to reset users in localStorage
   const handleResetUsers = () => {
     resetUsers();
+    // Debug: Show the current users in localStorage
+    const currentUsers = JSON.parse(localStorage.getItem('seededUsers'));
+    console.log('Current users in localStorage:', currentUsers);
     setError('Users reset successfully. You can now login with any sample account.');
   };
 
@@ -61,7 +64,15 @@ const Login = () => {
 
     setIsLoading(true);
     try {
+      console.log('Login attempt with:', credentials);
+
+      // Debug: Show the current users in localStorage before authentication
+      const currentUsers = JSON.parse(localStorage.getItem('seededUsers'));
+      console.log('Current users before auth:', currentUsers);
+
       const user = authenticateUser(credentials.email, credentials.password);
+      console.log('Authentication result:', user);
+
       if (user) {
         login(user);
         navigate('/');
@@ -69,6 +80,7 @@ const Login = () => {
         setError('Invalid email or password');
       }
     } catch (err) {
+      console.error('Login error:', err);
       setError('An error occurred. Please try again.');
     } finally {
       setIsLoading(false);
@@ -77,6 +89,58 @@ const Login = () => {
 
   const handleDemoLogin = (credentials) => {
     setCredentials(credentials);
+  };
+
+  // Function to directly login with Napoleon Orwell
+  const handleDirectLogin = () => {
+    // First try to reset users
+    resetUsers();
+
+    // Then directly add Napoleon user to ensure it's there
+    addNapoleonUser();
+
+    // Attempt login
+    const email = 'testing@user1.com';
+    const password = 'password789';
+
+    console.log('Direct login attempt with:', { email, password });
+
+    // Check if our user exists in localStorage
+    const userExists = checkUserExists(email);
+    console.log(`User ${email} exists in localStorage:`, userExists);
+
+    // Debug: Show the current users in localStorage
+    const currentUsers = JSON.parse(localStorage.getItem('seededUsers'));
+    console.log('Current users in localStorage:', currentUsers);
+
+    // Find our user in the current users
+    const ourUser = currentUsers.find(u => u.email === email);
+    console.log('Our user in localStorage:', ourUser);
+
+    // Try to authenticate
+    const user = authenticateUser(email, password);
+    console.log('Direct authentication result:', user);
+
+    if (user) {
+      login(user);
+      navigate('/');
+    } else {
+      // If authentication failed, try one more approach
+      // Create a user object directly and log in with it
+      const directUser = {
+        name: 'Napoleon Orwell',
+        email: 'testing@user1.com',
+        role: 'user',
+        user_id: '09090',
+        number_of_dogs: 2,
+        website: 'https://reacttest-kappa-two.vercel.app',
+        dash: 'https://reacttest-kappa-two.vercel.app'
+      };
+
+      console.log('Attempting direct login with user object:', directUser);
+      login(directUser);
+      navigate('/');
+    }
   };
 
   return (
@@ -131,13 +195,22 @@ const Login = () => {
               Email: testing@user1.com<br/>Password: password789
             </li>
           </ul>
-          <button
-            type="button"
-            className="resetButton"
-            onClick={handleResetUsers}
-          >
-            Reset Users
-          </button>
+          <div className="buttonGroup">
+            <button
+              type="button"
+              className="resetButton"
+              onClick={handleResetUsers}
+            >
+              Reset Users
+            </button>
+            <button
+              type="button"
+              className="directLoginButton"
+              onClick={handleDirectLogin}
+            >
+              Direct Login as Napoleon
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -43,6 +43,50 @@ export const initializeUsers = () => {
 // Reset users in localStorage to the sample users
 export const resetUsers = () => {
   localStorage.setItem('seededUsers', JSON.stringify(sampleUsers));
+  console.log('Users reset with:', sampleUsers);
+  return checkUserExists('testing@user1.com');
+};
+
+// Check if a user exists in localStorage
+export const checkUserExists = (email) => {
+  const users = getUsers();
+  const user = users.find(u => u.email === email);
+  console.log(`Checking if user ${email} exists:`, !!user);
+  return !!user;
+};
+
+// Add Napoleon user directly to localStorage
+export const addNapoleonUser = () => {
+  const users = getUsers();
+
+  // Check if Napoleon already exists
+  const napoleonExists = users.some(u => u.email === 'testing@user1.com');
+
+  if (!napoleonExists) {
+    // Create Napoleon user
+    const napoleon = {
+      email: 'testing@user1.com',
+      password: 'password789',
+      name: 'Napoleon Orwell',
+      role: 'user',
+      user_id: '09090',
+      number_of_dogs: 2,
+      website: 'https://reacttest-kappa-two.vercel.app',
+      dash: 'https://reacttest-kappa-two.vercel.app'
+    };
+
+    // Add to users array
+    users.push(napoleon);
+
+    // Save back to localStorage
+    localStorage.setItem('seededUsers', JSON.stringify(users));
+
+    console.log('Napoleon user added directly to localStorage');
+    return true;
+  }
+
+  console.log('Napoleon user already exists in localStorage');
+  return false;
 };
 
 // Get all users
@@ -54,7 +98,12 @@ export const getUsers = () => {
 // Authenticate user
 export const authenticateUser = (email, password) => {
   const users = getUsers();
+  console.log('Authenticating user:', email);
+  console.log('All users:', users);
+
   const user = users.find(u => u.email === email && u.password === password);
+  console.log('Found user:', user);
+
   if (user) {
     // Don't send password back to client
     const { password, ...userWithoutPassword } = user;
