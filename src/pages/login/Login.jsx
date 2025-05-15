@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, Navigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { initializeUsers, authenticateUser } from '../../utils/users';
+import { initializeUsers, authenticateUser, resetUsers } from '../../utils/users';
 import './login.css';
 
 const Login = () => {
@@ -18,6 +18,12 @@ const Login = () => {
     // Initialize sample users when component mounts
     initializeUsers();
   }, []);
+
+  // Function to reset users in localStorage
+  const handleResetUsers = () => {
+    resetUsers();
+    setError('Users reset successfully. You can now login with any sample account.');
+  };
 
   // Redirect if user is already logged in
   if (user) {
@@ -101,8 +107,8 @@ const Login = () => {
             />
           </div>
           {error && <div className="error">{error}</div>}
-          <button 
-            type="submit" 
+          <button
+            type="submit"
             className="loginButton"
             disabled={isLoading}
           >
@@ -121,11 +127,21 @@ const Login = () => {
             <li onClick={() => handleDemoLogin({ email: 'admin@staybook.com', password: 'admin123' })}>
               Email: admin@staybook.com<br/>Password: admin123
             </li>
+            <li onClick={() => handleDemoLogin({ email: 'testing@user1.com', password: 'password789' })}>
+              Email: testing@user1.com<br/>Password: password789
+            </li>
           </ul>
+          <button
+            type="button"
+            className="resetButton"
+            onClick={handleResetUsers}
+          >
+            Reset Users
+          </button>
         </div>
       </div>
     </div>
   );
 };
 
-export default Login; 
+export default Login;

@@ -40,6 +40,11 @@ export const initializeUsers = () => {
   }
 };
 
+// Reset users in localStorage to the sample users
+export const resetUsers = () => {
+  localStorage.setItem('seededUsers', JSON.stringify(sampleUsers));
+};
+
 // Get all users
 export const getUsers = () => {
   const users = localStorage.getItem('seededUsers');
